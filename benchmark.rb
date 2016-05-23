@@ -1,0 +1,77 @@
+require './rb_math'
+require './crystal_ext'
+require 'benchmark/ips'
+require 'active_support/all'
+
+number = 20
+empty = ''
+blank = ' '
+squish = " foo   bar    \n   \t   boo"
+class String
+  def cr_blank?
+    empty? || cr_blank
+  end
+end
+
+Benchmark.ips do |x|
+  x.report("rb") do
+    RbMath.new.fibonacci(number)
+  end
+  x.report("cr") do
+    CrMath.new.fibonacci(number)
+  end
+  x.compare!
+end
+
+Benchmark.ips do |x|
+  x.report("empty rb") do
+    empty.blank?
+  end
+  x.report("empty crystal") do
+    empty.cr_blank?
+  end
+  x.compare!
+end
+
+Benchmark.ips do |x|
+  x.report("AS blank") do
+    blank.blank?
+  end
+  x.report("CR blank") do
+    blank.cr_blank?
+  end
+  x.compare!
+end
+
+Benchmark.ips do |x|
+  x.report("AS squish") do
+    squish.squish
+  end
+  x.report("cr squish") do
+    squish.cr_squish
+  end
+  x.compare!
+end
+
+num = rand(30)
+Benchmark.ips do |x|
+  x.report("AS ordinal") do
+    num.ordinal
+  end
+  x.report("cr ordinal") do
+    num.cr_ordinal
+  end
+  x.compare!
+end
+
+
+require 'fast_blank'
+Benchmark.ips do |x|
+  x.report("fast_blank rb") do
+    blank.blank?
+  end
+  x.report("blank crystal") do
+    blank.cr_blank?
+  end
+  x.compare!
+end
