@@ -2,7 +2,7 @@
 
 Proof of concept (and more work coming!) for writing a Ruby extension in Crystal. This doesn't use FFI. There's some problems, and it's pretty rough for now, but it's going to keep improving. 
 
-I'd like to get this to a point that it's incredibly simple and quick to write something and have it working, 
+I'd like to get this to a point that it's incredibly simple and quick to write something and have it functional.
 
 # How to get this working
 
@@ -10,7 +10,7 @@ Minimum crystal version: 0.16.0
 
 Make sure Crystal is installed (Homebrew on OSX is fine)
 
-Test and benchmark scripts both require [fast_blank](https://github.com/SamSaffron/fast_blank) and [active_support](https://github.com/rails/rails/tree/master/activesupport), mainly for comparison. Test script also uses descriptive_statistics. None of these are required to get this up and running, I'm just using them in those scripts for some comparisons. I should add a Gemfile but I'm just playing around for now. 
+Test and benchmark scripts both require [fast_blank](https://github.com/SamSaffron/fast_blank) and [active_support](https://github.com/rails/rails/tree/master/activesupport), mainly for comparison. Test script also uses [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics). None of these are required to get this up and running, I'm just using them in those scripts for some comparisons. I should add a Gemfile but I'm just playing around for now. 
 
 ```
 make
@@ -36,6 +36,6 @@ These have all been incredibly helpful, and this is very closely modeled after t
 
 # Future Ideas + Contributing
 
-I'd like to get this more fully fleshed out, more functional, and get it usable. There is some question as to whether or not a native Ruby extension in Crystal is a useful idea, and I'd love to learn more about both why it _would_ and would _not_ be worthwhile, from the people out there who are far more knowledgeable than I am.
+I'd like to get this more fully fleshed out, more functional, and get it usable. There is some question as to whether or not writing a native Ruby extension in Crystal is a useful idea, and I'd love to learn more about both why it _would_ and would _not_ be worthwhile, from people out there who are far more knowledgeable than I am.
 
 If anyone is interested in this concept, please reach out to me either on this repo or on Twitter (@phoffer). I'd love to collaborate with anyone interested, and just learn more in general.
