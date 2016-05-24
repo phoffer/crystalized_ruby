@@ -38,4 +38,4 @@ These have all been incredibly helpful, and this is very closely modeled after t
 
 I'd like to get this more fully fleshed out, more functional, and get it usable. There is some question as to whether or not writing a native Ruby extension in Crystal is a useful idea, and I'd love to learn more about both why it _would_ and would _not_ be worthwhile, from people out there who are far more knowledgeable than I am.
 
-If anyone is interested in this concept, please reach out to me either on this repo or on Twitter (@phoffer). I'd love to collaborate with anyone interested, and just learn more in general.
+If anyone is interested in this concept, please reach out to me either on this repo or on Twitter (@phoffer8). I'd love to collaborate with anyone interested, and just learn more in general.
