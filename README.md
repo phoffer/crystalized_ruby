@@ -20,7 +20,7 @@ ruby benchmark.rb
 
 # Problems
 
-* I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. 
+* I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
 * Also, it's just pretty rough. I want to clean it up, add some helpers for defining methods in a simpler manner, etc.
 * I haven't done anything with Arrays or Hashes yet. I'd like to but right now I've just been trying to get a lot of this to work correctly.
 
