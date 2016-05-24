@@ -1,4 +1,6 @@
 # First, build the extension by running `make`
+# this is a big mess, just a bunch of random stuff to test out. 
+
 require './crystal_ext'
 
 str_squish = " foo   bar    \n   \t   boo"
@@ -51,6 +53,8 @@ puts 1.ordinal
 exit
 
 require 'descriptive_statistics'
+
+# playing around to see memory consumption/leakage
 
 str ||= 'world'
 count = 1_000_000_000
