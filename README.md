@@ -10,7 +10,7 @@ Minimum crystal version: 0.16.0
 
 Make sure Crystal is installed (Homebrew on OSX is fine)
 
-Test and benchmark scripts both require [fast_blank](https://github.com/SamSaffron/fast_blank) and [active_support](https://github.com/rails/rails/tree/master/activesupport), mainly for comparison. Test script also uses [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics). None of these are required to get this up and running, I'm just using them in those scripts for some comparisons. There's a Gemfile to install them if desired.
+Test and benchmark scripts both require [fast_blank](https://github.com/SamSaffron/fast_blank) and [active_support](https://github.com/rails/rails/tree/master/activesupport), mainly for comparison. Test script also uses [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics), and the benchmark script uses [benchmark-ips](https://github.com/evanphx/benchmark-ips). None of these are required, except to run those two Ruby scripts. There's a Gemfile to install them if desired.
 
 ```
 make
