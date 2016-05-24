@@ -1,0 +1,65 @@
+Warming up --------------------------------------
+                  rb   103.000  i/100ms
+                  cr     2.044k i/100ms
+Calculating -------------------------------------
+                  rb    923.237  (± 6.9%) i/s -      4.635k in   5.047798s
+                  cr     22.744k (± 7.1%) i/s -    114.464k in   5.057253s
+
+Comparison:
+                  cr:    22743.9 i/s
+                  rb:      923.2 i/s - 24.63x slower
+
+Warming up --------------------------------------
+            empty rb   225.431k i/100ms
+       empty crystal   241.244k i/100ms
+Calculating -------------------------------------
+            empty rb      7.591M (± 9.1%) i/s -     37.647M in   5.004111s
+       empty crystal      6.973M (± 8.9%) i/s -     34.739M in   5.020294s
+
+Comparison:
+            empty rb:  7591363.0 i/s
+       empty crystal:  6973264.7 i/s - same-ish: difference falls within error
+
+Warming up --------------------------------------
+            AS blank    59.508k i/100ms
+            CR blank   137.507k i/100ms
+Calculating -------------------------------------
+            AS blank    923.967k (± 6.0%) i/s -      4.642M in   5.043716s
+            CR blank      2.394M (± 1.0%) i/s -     12.101M in   5.055746s
+
+Comparison:
+            CR blank:  2393668.6 i/s
+            AS blank:   923967.3 i/s - 2.59x slower
+
+Warming up --------------------------------------
+           AS squish    17.487k i/100ms
+           cr squish    55.841k i/100ms
+Calculating -------------------------------------
+           AS squish    202.554k (± 7.7%) i/s -      1.014M in   5.036775s
+           cr squish    691.693k (± 0.7%) i/s -      3.462M in   5.005578s
+
+Comparison:
+           cr squish:   691693.1 i/s
+           AS squish:   202554.1 i/s - 3.41x slower
+
+Warming up --------------------------------------
+          AS ordinal   112.982k i/100ms
+          cr ordinal   196.392k i/100ms
+Calculating -------------------------------------
+          AS ordinal      1.775M (± 5.6%) i/s -      8.926M in   5.042865s
+          cr ordinal      5.045M (± 7.5%) i/s -     25.138M in   5.009089s
+
+Comparison:
+          cr ordinal:  5044785.3 i/s
+          AS ordinal:  1775271.7 i/s - 2.84x slower
+
+Warming up --------------------------------------
+       fast_blank rb   222.956k i/100ms
+       blank crystal   132.829k i/100ms
+Calculating -------------------------------------
+       fast_blank rb      6.599M (± 9.2%) i/s -     32.775M in   5.006194s
+       blank crystal      2.199M (± 1.4%) i/s -     11.025M in   5.013614s
+
+Comparison:
+       fast_blank rb:  6599201.8 i/s
+       blank crystal:  2199386.4 i/s - 3.00x slower

@@ -10,7 +10,7 @@ Minimum crystal version: 0.16.0
 
 Make sure Crystal is installed (Homebrew on OSX is fine)
 
-Test and benchmark scripts both require [fast_blank](https://github.com/SamSaffron/fast_blank) and [active_support](https://github.com/rails/rails/tree/master/activesupport), mainly for comparison. Test script also uses [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics). None of these are required to get this up and running, I'm just using them in those scripts for some comparisons. I should add a Gemfile but I'm just playing around for now. 
+Test and benchmark scripts both require [fast_blank](https://github.com/SamSaffron/fast_blank) and [active_support](https://github.com/rails/rails/tree/master/activesupport), mainly for comparison. Test script also uses [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics). None of these are required to get this up and running, I'm just using them in those scripts for some comparisons. There's a Gemfile to install them if desired.
 
 ```
 make
@@ -23,6 +23,39 @@ ruby benchmark.rb
 * I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
 * Also, it's just pretty rough. I want to clean it up, add some helpers for defining methods in a simpler manner, etc.
 * I haven't done anything with Arrays or Hashes yet. I'd like to but right now I've just been trying to get a lot of this to work correctly.
+
+# Benchmarking
+
+There is a benchmark script that compares a few things. The methods replicating ActiveSupport methods are copy-pasted, not even re-implemented from scratch. This uses the improved String#blank? method from AS 5.0, but it's not a hard requirement.
+
+Some highlights (see results.txt for more):
+
+```
+Comparison:
+        cr fibonacci:    22743.9 i/s
+        rb fibonacci:      923.2 i/s - 24.63x slower
+
+Comparison:
+     empty string rb:  7591363.0 i/s
+empty string crystal:  6973264.7 i/s - same-ish: difference falls within error
+
+Comparison:
+     CR blank string:  2393668.6 i/s
+     AS blank string:   923967.3 i/s - 2.59x slower
+
+Comparison:
+           cr squish:   691693.1 i/s
+           AS squish:   202554.1 i/s - 3.41x slower
+
+Comparison:
+          cr ordinal:  5044785.3 i/s
+          AS ordinal:  1775271.7 i/s - 2.84x slower
+
+Comparison:
+       fast_blank rb:  6599201.8 i/s
+       blank crystal:  2199386.4 i/s - 3.00x slower
+```
+
 
 # Thanks and influences
 
