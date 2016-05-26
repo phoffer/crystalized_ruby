@@ -2,24 +2,40 @@
 # this is a big mess, just a bunch of random stuff to test out. 
 
 require './crystal_ext'
-
-str_squish = " foo   bar    \n   \t   boo"
-puts str_squish.cr_squish
-
-puts 12.cr_ordinal
-crm = CrMath.new
-puts crm.add(2,3) + 2
-puts crm.fibonacci(10)
-
-exit
-require 'active_support/all'
-require 'fast_blank'
-
 class String
   def cr_blank?
     empty? || cr_blank
   end
 end
+
+
+str_squish = " foo   bar    \n   \t   boo"
+puts str_squish.cr_squish
+puts ' '.cr_blank?
+puts 'string_to_sym'.cr_intern.inspect
+
+puts 12.cr_ordinal
+
+crm = CrMath.new
+puts crm.add(2,3) + 2
+puts crm.fibonacci(10)
+
+g = Greeter.new
+puts g.salute('world')
+
+
+
+
+
+h = { 'key_1' => 'val_1', 'key_2' => 'val_2', 'key_12' => 12, 'key_true' => true, 'key_false' => false }
+
+puts h.to_cr
+
+
+exit
+require 'active_support/all'
+require 'fast_blank'
+
 
 str = ARGV[0]
 g = Greeter.new

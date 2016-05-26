@@ -1,5 +1,6 @@
 lib LibRuby
   type VALUE = Void*
+  type ID = Void*
   type METHOD_FUNC = VALUE, VALUE -> VALUE # STUB
 
   $rb_cObject : VALUE
@@ -13,6 +14,9 @@ lib LibRuby
   fun rb_str_to_str(value : VALUE) : VALUE
   fun rb_string_value_cstr(value_ptr : VALUE*) : UInt8*
   fun rb_str_new_cstr(str : UInt8*) : VALUE
+
+  fun rb_id2sym(value : ID) : VALUE
+  fun rb_intern(name : UInt8*) : ID
 
   # hashes
   fun rb_hash_new() : VALUE
@@ -36,6 +40,11 @@ lib LibRuby2
   fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
   fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
+struct Symbol
+  def to_ruby
+    LibRuby.rb_id2sym(LibRuby.rb_intern(self.to_s))
+  end
+end
 
 class Hash
   def to_ruby
@@ -44,6 +53,9 @@ class Hash
         LibRuby.rb_hash_aset(rb_hash, k.to_ruby, v.to_ruby)
       end
     end
+  end
+  def self.from_ruby
+    "hi"
   end
 end
 
@@ -56,6 +68,9 @@ end
 struct Bool
   def to_ruby
     Pointer(Void).new(self ? 20_u64 : 0_u64).as(LibRuby::VALUE)
+  end
+  def self.from_ruby
+    #
   end
 end
 

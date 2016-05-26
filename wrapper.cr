@@ -39,4 +39,17 @@ module Wrapper
     int = LibRuby.rb_num2int(self)
     StringExtensions.ordinal(int).to_ruby
   end
+  def self.hash_crystalize(self : LibRuby::VALUE)
+    Hash.from_ruby.to_ruby
+  end
+  def self.parse_hash(self : LibRuby::VALUE)
+    Hash.from_ruby.to_ruby
+  end
+  def self.hash_to_ruby(self : LibRuby::VALUE)
+    { :hello => 12, "hello" => :goodbye }.to_ruby
+  end
+  def self.to_sym_via_cr(self : LibRuby::VALUE)
+    str = String.from_ruby(self)
+    LibRuby.rb_id2sym(LibRuby.rb_intern(str))
+  end
 end
