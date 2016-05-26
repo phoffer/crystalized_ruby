@@ -22,7 +22,8 @@ ruby benchmark.rb
 
 * I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
 * Also, it's just pretty rough. I want to clean it up, add some helpers for defining methods in a simpler manner, etc.
-* I haven't done anything with Arrays or Hashes yet. I'd like to but right now I've just been trying to get a lot of this to work correctly.
+* I can't get a proc as a C callback working. There's some broken code commented out. Would love assistance from someone more knowledgeable. Right now this is for converting a Ruby hash to a Crystal hash. 
+* Once it can read Ruby hashes/arrays, it will need to be able to check the ruby type for conversion to Crystal. There are some C APIs for this, just gotta figure them out.
 
 # Benchmarking
 
