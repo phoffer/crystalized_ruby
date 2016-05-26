@@ -8,9 +8,8 @@ module Wrapper
   end
 
   def self.salute_wrapper(self : LibRuby::VALUE, name : LibRuby::VALUE)
-    # str = rb_str_to_cr_str(name)
     str = String.from_ruby(name)
-    Greeter.salute(str).to_ruby
+    Geode.salute(str).to_ruby
   end
 
   def self.fibonacci_cr_wrapper(self : LibRuby::VALUE, value : LibRuby::VALUE)
@@ -43,10 +42,14 @@ module Wrapper
     Hash.from_ruby.to_ruby
   end
   def self.parse_hash(self : LibRuby::VALUE)
-    Hash.from_ruby.to_ruby
+    puts "Can't convert Ruby hash to Crystal yet, so here's a Crystal hash for you"
+    { :hello => 12, "what's this?" => :crystal, "this is cool" => true }.to_ruby
   end
   def self.hash_to_ruby(self : LibRuby::VALUE)
     { :hello => 12, "hello" => :goodbye }.to_ruby
+  end
+  def self.array_to_ruby(self : LibRuby::VALUE)
+    [1, "two", :three].to_ruby
   end
   def self.to_sym_via_cr(self : LibRuby::VALUE)
     str = String.from_ruby(self)

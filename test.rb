@@ -20,8 +20,10 @@ crm = CrMath.new
 puts crm.add(2,3) + 2
 puts crm.fibonacci(10)
 
-g = Greeter.new
+g = Geode.new
 puts g.salute('world')
+puts g.cr_hash.inspect 
+puts g.cr_array.inspect 
 
 
 
@@ -38,7 +40,7 @@ require 'fast_blank'
 
 
 str = ARGV[0]
-g = Greeter.new
+g = Geode.new
 # puts g.salute(str || 'world')
 # puts ARGV[0].to_s.cr_blank
 num = rand(20)

@@ -1,21 +1,23 @@
 require "./lib_ruby"
 require "./integer_stuff"
 require "./wrapper"
-require "./greeter"
+require "./geode"
 require "./string_extensions"
 
 fun init = Init_crystal_ext
   GC.init
   LibCrystalMain.__crystal_main(0, Pointer(Pointer(UInt8)).null)
 
-  # Greeter
-  greeter = LibRuby.rb_define_class("Greeter", LibRuby.rb_cObject)
-  LibRuby.rb_define_method(greeter, "salute", ->Wrapper.salute_wrapper, 1)
+  # miscellaneous stuff - "Geode"
+  geode = LibRuby.rb_define_class("Geode", LibRuby.rb_cObject)
+  LibRuby.rb_define_method(geode, "salute", ->Wrapper.salute_wrapper, 1)
+  LibRuby0.rb_define_method(geode, "cr_array", ->Wrapper.array_to_ruby, 0)
+  LibRuby0.rb_define_method(geode, "cr_hash", ->Wrapper.hash_to_ruby, 0)
+  # LibRuby0.rb_define_method(integer, "cr_hash", ->Wrapper.hash_crystalize, 0)
 
   # Integer
   integer = LibRuby.rb_define_class("Integer", LibRuby.rb_cNumeric)
   LibRuby0.rb_define_method(integer, "cr_ordinal", ->Wrapper.ordinal, 0)
-  LibRuby0.rb_define_method(integer, "cr_hash", ->Wrapper.hash_crystalize, 0)
 
   # Hash
   hash = LibRuby.rb_define_class("Hash", LibRuby.rb_cObject)

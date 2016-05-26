@@ -1,4 +1,4 @@
-module Greeter
+module Geode
   def self.salute(name)
     "Hello, #{name}!!!"
   end
