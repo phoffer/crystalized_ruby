@@ -7,13 +7,12 @@ puts ActiveSupport::Inflector.camelize("active_model/errors")         # => "Acti
 puts ActiveSupport::Inflector.camelize("active_model/errors", false)  # => "activeModel::Errors"
 
 
-
 puts "\n~~~~~~~~ underscore ++++++++"
 puts ActiveSupport::Inflector.underscore("ActiveModel")         # => "active_model"
 puts ActiveSupport::Inflector.underscore("ActiveModel::Errors") # => "active_model/errors"
 puts ActiveSupport::Inflector.underscore("HTTP::Errors")        # => "http/errors"
 
-puts "\n~~~~~~~~ underscore ++++++++"
+puts "\n~~~~~~~~ humanize ++++++++"
 puts ActiveSupport::Inflector.humanize("employee_salary")              # => "Employee salary"
 puts ActiveSupport::Inflector.humanize("author_id")                    # => "Author"
 puts ActiveSupport::Inflector.humanize("author_id", capitalize: false) # => "author"
@@ -43,8 +42,7 @@ puts ActiveSupport::Inflector.demodulize("Inflections")                         
 puts ActiveSupport::Inflector.demodulize("::Inflections")                                     # => "Inflections"
 puts ActiveSupport::Inflector.demodulize("")                                                  # => ""
 
-
-puts "\n~~~~~~~~ pluralize ~~~~~~~~~"
+puts "\n~~~~~~~~ deconstantize ~~~~~~~~~"
 puts ActiveSupport::Inflector.deconstantize("Net::HTTP")   # => "Net"
 puts ActiveSupport::Inflector.deconstantize("::Net::HTTP") # => "::Net"
 puts ActiveSupport::Inflector.deconstantize("String")      # => ""
@@ -55,7 +53,6 @@ puts "\n~~~~~~~~ foreign_key ~~~~~~~~~"
 puts ActiveSupport::Inflector.foreign_key("Message")        # => "message_id"
 puts ActiveSupport::Inflector.foreign_key("Message", false) # => "messageid"
 puts ActiveSupport::Inflector.foreign_key("Admin::Post")    # => "post_id"
-
 
 puts "\n~~~~~~~~ ordinal ~~~~~~~~~"
 puts ActiveSupport::Inflector.ordinal(1)     # => "st"
@@ -72,7 +69,6 @@ puts ActiveSupport::Inflector.ordinalize(1002)  # => "1002nd"
 puts ActiveSupport::Inflector.ordinalize(1003)  # => "1003rd"
 puts ActiveSupport::Inflector.ordinalize(-11)   # => "-11th"
 puts ActiveSupport::Inflector.ordinalize(-1021) # => "-1021st"
-
 
 puts "\n~~~~~~~~ pluralize ~~~~~~~~~"
 puts ActiveSupport::Inflector.pluralize("post")             # => "posts"
