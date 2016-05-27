@@ -4,6 +4,19 @@ Proof of concept (and more work coming!) for writing a Ruby extension in Crystal
 
 I'd like to get this to a point that it's incredibly simple and quick to write something and have it functional.
 
+## Updates
+
+#### 5/26 (65e1d26)
+
+I've ported over all the relevant parts of ActiveSupport::Inflector. Basically everything except the two methods for constantizing and also the i18n stuff. To run:
+
+```
+crystal active_support/check_string.cr
+crystal active_support/check_inflector.cr
+```
+
+The only thing that's BROKEN is pluralize/singularize. And I'll fix that, I just have to muck around with the RegEx's a bit.
+
 # How to get this working
 
 Minimum crystal version: 0.16.0
