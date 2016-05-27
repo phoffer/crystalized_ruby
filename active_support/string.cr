@@ -117,9 +117,10 @@ class String
       ActiveSupport::Inflector.camelize(self, false)
     end
   end
-  def camelcase(first_letter = :upper)
-    camelize(first_letter)
-  end
+  # Don't want to redefine native method
+  # def camelcase(first_letter = :upper)
+  #   camelize(first_letter)
+  # end
 
   # Capitalizes all the words and replaces some characters in the string to create
   # a nicer looking title. +titleize+ is meant for creating pretty output. It is not
@@ -142,7 +143,7 @@ class String
   #
   #   'ActiveModel'.underscore         # => "active_model"
   #   'ActiveModel::Errors'.underscore # => "active_model/errors"
-  def underscore
+  def as_underscore
     ActiveSupport::Inflector.underscore(self)
   end
 
