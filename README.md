@@ -15,7 +15,7 @@ crystal active_support/check_string.cr
 crystal active_support/check_inflector.cr
 ```
 
-The only thing that's BROKEN is pluralize/singularize. And I'll fix that, I just have to muck around with the RegEx's a bit.
+The only thing that's BROKEN is pluralize. It works except for words that are already plural, ending in 's', like "posts" "words" etc
 
 # How to get this working
 

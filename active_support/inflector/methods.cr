@@ -383,15 +383,28 @@ module ActiveSupport
     #  apply_inflections("post", inflections.plurals)    # => "posts"
     #  apply_inflections("posts", inflections.singulars) # => "post"
     def apply_inflections(word, rules)
-      result = word.to_s.dup
-      new_str = ""
-
+# puts word
+# puts "1"
+      original = word.to_s.dup
+      result = original
       if word.empty? || inflections.uncountables.uncountable?(result)
         result
       else
-        rules.each { |(rule, replacement)| break if (new_str = result.sub(rule, replacement)) && new_str != result  }
-        result == new_str ? result : result + new_str
-        new_str
+        rules.find do |(rule, replacement), _|
+          result = original.sub(rule, replacement)
+          if result != original
+            puts "-----"
+            puts original
+            puts rule
+            puts replacement
+            puts result
+            puts "^^^^^^^"
+          end
+          result != original
+        end
+# puts result
+# puts "2"
+        result
       end
     end
   end
