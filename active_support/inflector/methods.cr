@@ -388,7 +388,8 @@ module ActiveSupport
       if word.empty? || inflections.uncountables.uncountable?(result)
         result
       else
-        rules.find do |(rule, replacement), _|
+        rules.find do |arr, _|
+          rule, replacement = arr
           result = original.sub(rule, replacement)
           result != original
         end
