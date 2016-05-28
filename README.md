@@ -6,7 +6,7 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 
 ## Updates
 
-#### 5/26 (65e1d26)
+#### 5/26 @ 65e1d26
 
 I've ported over all the relevant parts of ActiveSupport::Inflector. Basically everything except the two methods for constantizing and also the i18n stuff. To run:
 
@@ -22,7 +22,7 @@ The only thing that's BROKEN is pluralize. It works except for words that are al
 
 There's a benchmarking script for all this, and the results are pretty good. See `active_support/results.txt`
 
-#### 5/27 (5790cbe)
+#### 5/27 @ 5790cbe
 
 * Set up benchmarking to compare the Ruby-ActiveSupport with the Crystal implementation. Results are very strong for Crystal.
 * Realized I forgot to add a bunch of files to the repo. Those are all added and the above instructions should work now.
