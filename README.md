@@ -15,7 +15,10 @@ crystal active_support/check_string.cr
 crystal active_support/check_inflector.cr
 ```
 
-The only thing that's BROKEN is pluralize. It works except for words that are already plural, ending in 's', like "posts" "words" etc
+The only thing that's BROKEN is pluralize. It works except for words that are already plural, ending in 's', like "posts"/"words"
+
+There's a benchmarking script for all this, and the results are pretty good. See `active_support/results.txt`
+
 
 # How to get this working
 

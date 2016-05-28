@@ -1,0 +1,187 @@
+Warming up --------------------------------------
+          cr ordinal   159.217k i/100ms
+          AS ordinal    45.604k i/100ms
+Calculating -------------------------------------
+          cr ordinal      2.574M (± 3.1%) i/s -     12.897M in   5.015870s
+          AS ordinal    538.273k (± 2.5%) i/s -      2.691M in   5.001957s
+
+Comparison:
+          cr ordinal:  2573727.3 i/s
+          AS ordinal:   538272.9 i/s - 4.78x slower
+
+Warming up --------------------------------------
+       cr ordinalize    50.340k i/100ms
+       AS ordinalize    17.679k i/100ms
+Calculating -------------------------------------
+       cr ordinalize    610.728k (± 0.7%) i/s -      3.071M in   5.028225s
+       AS ordinalize    189.130k (± 2.1%) i/s -    954.666k in   5.050024s
+
+Comparison:
+       cr ordinalize:   610727.9 i/s
+       AS ordinalize:   189129.6 i/s - 3.23x slower
+
+Warming up --------------------------------------
+           cr blank?    66.276k i/100ms
+           AS blank?    28.434k i/100ms
+Calculating -------------------------------------
+           cr blank?    818.840k (± 2.5%) i/s -      4.109M in   5.021448s
+           AS blank?    313.587k (± 3.5%) i/s -      1.592M in   5.084116s
+
+Comparison:
+           cr blank?:   818840.1 i/s
+           AS blank?:   313587.5 i/s - 2.61x slower
+
+Warming up --------------------------------------
+           cr squish    69.012k i/100ms
+           AS squish    23.557k i/100ms
+Calculating -------------------------------------
+           cr squish    836.229k (± 3.6%) i/s -      4.210M in   5.041286s
+           AS squish    240.756k (± 7.6%) i/s -      1.201M in   5.022324s
+
+Comparison:
+           cr squish:   836229.4 i/s
+           AS squish:   240755.6 i/s - 3.47x slower
+
+Warming up --------------------------------------
+        cr pluralize     2.641k i/100ms
+        AS pluralize   755.000  i/100ms
+Calculating -------------------------------------
+        cr pluralize     28.138k (± 2.6%) i/s -    142.614k in   5.072045s
+        AS pluralize      7.618k (± 3.2%) i/s -     38.505k in   5.059681s
+
+Comparison:
+        cr pluralize:    28137.6 i/s
+        AS pluralize:     7618.3 i/s - 3.69x slower
+
+Warming up --------------------------------------
+      cr singularize     3.149k i/100ms
+      AS singularize   760.000  i/100ms
+Calculating -------------------------------------
+      cr singularize     31.547k (± 2.9%) i/s -    160.599k in   5.095429s
+      AS singularize      7.723k (± 4.6%) i/s -     38.760k in   5.030634s
+
+Comparison:
+      cr singularize:    31547.3 i/s
+      AS singularize:     7722.7 i/s - 4.09x slower
+
+Warming up --------------------------------------
+         cr camelize     7.780k i/100ms
+         AS camelize     4.224k i/100ms
+Calculating -------------------------------------
+         cr camelize     77.997k (± 3.9%) i/s -    396.780k in   5.095292s
+         AS camelize     41.706k (± 6.8%) i/s -    211.200k in   5.088274s
+
+Comparison:
+         cr camelize:    77996.7 i/s
+         AS camelize:    41705.6 i/s - 1.87x slower
+
+Warming up --------------------------------------
+         cr titleize     3.530k i/100ms
+         AS titleize     1.730k i/100ms
+Calculating -------------------------------------
+         cr titleize     34.803k (± 3.8%) i/s -    176.500k in   5.079358s
+         AS titleize     17.898k (± 5.3%) i/s -     89.960k in   5.041606s
+
+Comparison:
+         cr titleize:    34802.5 i/s
+         AS titleize:    17897.7 i/s - 1.94x slower
+
+Warming up --------------------------------------
+    cr as_underscore     7.640k i/100ms
+    AS as_underscore     1.930k i/100ms
+Calculating -------------------------------------
+    cr as_underscore     78.121k (± 2.4%) i/s -    397.280k in   5.088428s
+    AS as_underscore     22.045k (± 5.4%) i/s -    111.940k in   5.093232s
+
+Comparison:
+    cr as_underscore:    78120.5 i/s
+    AS as_underscore:    22044.5 i/s - 3.54x slower
+
+Warming up --------------------------------------
+        cr dasherize   117.808k i/100ms
+        AS dasherize   161.126k i/100ms
+Calculating -------------------------------------
+        cr dasherize      1.787M (± 3.4%) i/s -      8.953M in   5.016414s
+        AS dasherize      3.316M (± 3.8%) i/s -     16.596M in   5.012140s
+
+Comparison:
+        AS dasherize:  3316298.2 i/s
+        cr dasherize:  1787122.2 i/s - 1.86x slower
+
+Warming up --------------------------------------
+       cr demodulize    68.498k i/100ms
+       AS demodulize    57.031k i/100ms
+Calculating -------------------------------------
+       cr demodulize    825.281k (± 2.5%) i/s -      4.178M in   5.066363s
+       AS demodulize    686.866k (± 3.2%) i/s -      3.479M in   5.070327s
+
+Comparison:
+       cr demodulize:   825280.7 i/s
+       AS demodulize:   686865.6 i/s - 1.20x slower
+
+Warming up --------------------------------------
+    cr deconstantize    73.713k i/100ms
+    AS deconstantize    53.367k i/100ms
+Calculating -------------------------------------
+    cr deconstantize    902.318k (± 2.6%) i/s -      4.570M in   5.068604s
+    AS deconstantize    603.463k (± 6.1%) i/s -      3.042M in   5.063862s
+
+Comparison:
+    cr deconstantize:   902317.7 i/s
+    AS deconstantize:   603463.5 i/s - 1.50x slower
+
+Warming up --------------------------------------
+         cr tableize     3.249k i/100ms
+         AS tableize   912.000  i/100ms
+Calculating -------------------------------------
+         cr tableize     32.556k (± 2.2%) i/s -    165.699k in   5.092299s
+         AS tableize      9.039k (± 3.8%) i/s -     45.600k in   5.052469s
+
+Comparison:
+         cr tableize:    32556.3 i/s
+         AS tableize:     9039.0 i/s - 3.60x slower
+
+Warming up --------------------------------------
+         cr classify     5.589k i/100ms
+         AS classify     1.758k i/100ms
+Calculating -------------------------------------
+         cr classify     57.460k (± 4.2%) i/s -    290.628k in   5.067285s
+         AS classify     17.681k (± 3.4%) i/s -     89.658k in   5.076824s
+
+Comparison:
+         cr classify:    57460.1 i/s
+         AS classify:    17680.7 i/s - 3.25x slower
+
+Warming up --------------------------------------
+         cr humanize     7.618k i/100ms
+         AS humanize     3.992k i/100ms
+Calculating -------------------------------------
+         cr humanize     78.529k (± 4.1%) i/s -    396.136k in   5.053483s
+         AS humanize     42.362k (± 5.9%) i/s -    211.576k in   5.012074s
+
+Comparison:
+         cr humanize:    78529.3 i/s
+         AS humanize:    42362.1 i/s - 1.85x slower
+
+Warming up --------------------------------------
+     cr upcase_first   107.507k i/100ms
+     AS upcase_first    78.897k i/100ms
+Calculating -------------------------------------
+     cr upcase_first      1.516M (± 1.9%) i/s -      7.633M in   5.038467s
+     AS upcase_first      1.002M (± 8.0%) i/s -      5.049M in   5.075034s
+
+Comparison:
+     cr upcase_first:  1515515.7 i/s
+     AS upcase_first:  1001514.6 i/s - 1.51x slower
+
+Warming up --------------------------------------
+      cr foreign_key     6.892k i/100ms
+      AS foreign_key     1.570k i/100ms
+Calculating -------------------------------------
+      cr foreign_key     71.590k (± 1.6%) i/s -    358.384k in   5.007408s
+      AS foreign_key     16.850k (± 4.0%) i/s -     84.780k in   5.039558s
+
+Comparison:
+      cr foreign_key:    71589.5 i/s
+      AS foreign_key:    16850.1 i/s - 4.25x slower
+
