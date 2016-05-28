@@ -23,6 +23,14 @@ class String
     empty? || BLANK_RE === self
   end
 
+  # Performs a destructive squish. See String#squish.
+  #   str = " foo   bar    \n   \t   boo"
+  #   str.squish!                         # => "foo bar boo"
+  #   str                                 # => "foo bar boo"
+  SQUISH_REGEX = /[[:space:]]+/
+  def squish
+    self.gsub(SQUISH_REGEX, ' ').strip
+  end
 
   # Returns the plural form of the word in the string.
   #
@@ -82,9 +90,9 @@ class String
 ############
 # not dealing with ruby classes
 ############
-  def constantize
-    ActiveSupport::Inflector.constantize(self)
-  end
+  # def constantize
+  #   ActiveSupport::Inflector.constantize(self)
+  # end
 
   # +safe_constantize+ tries to find a declared constant with the name specified
   # in the string. It returns nil when the name is not in CamelCase

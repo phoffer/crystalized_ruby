@@ -8,4 +8,5 @@ require "./inflector/methods"
 
 require "./inflections"
 require "./string"
+require "./integer"
 
