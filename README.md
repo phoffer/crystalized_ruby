@@ -6,6 +6,10 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 
 ## Updates
 
+#### 5/30 @ 182f5fb
+
+This is now using an external shard for inflectors ([github/phoffer/inflector.cr](https://github.com/phoffer/inflector.cr)). It is not quite perfect but it's mostly working, please see that repo for more info. 
+
 #### 5/27 @ 5790cbe
 
 * Set up benchmarking to compare the Ruby-ActiveSupport with the Crystal implementation. Results are very strong for Crystal.
