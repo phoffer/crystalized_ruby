@@ -1,0 +1,19 @@
+name: activesupport-inflector
+version: 0.1.0
+
+authors:
+  - Paul Hoffer <paulrhoffer@gmail.com>
+
+description: |
+  ActiveSupport::Inflector via native extension in Crystal
+
+dependencies:
+  inflector:
+    github: phoffer/inflector.cr
+    version: "~> 0.1.1"
+
+# development_dependencies:
+#   webmock:
+#     github: manastech/webmock
+
+license: MIT

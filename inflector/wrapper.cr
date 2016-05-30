@@ -1,4 +1,4 @@
-require "./inflector"
+require "inflector/core_ext"
 
 module Wrapper
 

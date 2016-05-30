@@ -1,0 +1,6 @@
+version: 1.0
+shards:
+  inflector:
+    github: phoffer/inflector.cr
+    version: 0.1.1
+
