@@ -73,11 +73,11 @@ module Wrapper
     str.foreign_key(separate_class_name_and_id_with_underscore).to_ruby
   end
   def self.ordinal(self : LibRuby::VALUE)
-    int = LibRuby.rb_num2int(self)
+    int = Int.from_ruby(self)
     int.ordinal.to_ruby
   end
   def self.ordinalize(self : LibRuby::VALUE)
-    int = LibRuby.rb_num2int(self)
+    int = Int.from_ruby(self)
     int.ordinalize.to_ruby
   end
 end

@@ -13,7 +13,7 @@ module Wrapper
   end
 
   def self.fibonacci_cr_wrapper(self : LibRuby::VALUE, value : LibRuby::VALUE)
-    int_value = Int32.from_ruby(value)
+    int_value = Int.from_ruby(value)
     IntegerStuff.fibonacci_cr(int_value).to_ruby
   end
 

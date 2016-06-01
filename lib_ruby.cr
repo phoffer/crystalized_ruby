@@ -121,7 +121,7 @@ class String
   end
 end
 
-struct Int32
+struct Int
   def to_ruby
     LibRuby.rb_int2inum(self)
   end
