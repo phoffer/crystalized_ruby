@@ -6,6 +6,11 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 
 ## Updates
 
+#### 6/3 @ 5937f4b
+
+1. Inflectors are completely working
+2. Regular expressions work, converting both directions (ruby -> crystal and vice versa)
+
 #### 5/30 @ 182f5fb
 
 This is now using an external shard for inflectors ([github/phoffer/inflector.cr](https://github.com/phoffer/inflector.cr)). It is not quite perfect but it's mostly working, please see that repo for more info. 
