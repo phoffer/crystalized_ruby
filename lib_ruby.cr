@@ -1,13 +1,22 @@
 lib LibRuby
   type VALUE = Void*
+  type METHOD_FUNC = VALUE -> VALUE
   type ID = Void*
-  type METHOD_FUNC = VALUE, VALUE -> VALUE # STUB
 
   $rb_cObject : VALUE
   $rb_cNumeric : VALUE
+  $rb_cBasicObject : VALUE
+
+  # generic
+  # fun rb_type(value : VALUE) : VALUE # can't get this working :/
+  fun rb_any_to_s(value : VALUE) : UInt8*
+  fun rb_class2name(value : VALUE) : UInt8*
+  fun rb_type(value : VALUE) : UInt8*
+  fun rb_funcall(value : VALUE, method : ID, argc : Int32) : VALUE
 
   # integers
   fun rb_num2int(value : VALUE) : Int32
+  fun rb_num2dbl(value : VALUE) : Float32
   fun rb_int2inum(value : Int32) : VALUE
 
   # strings
@@ -17,6 +26,9 @@ lib LibRuby
 
   fun rb_id2sym(value : ID) : VALUE
   fun rb_intern(name : UInt8*) : ID
+
+  # regexp
+  fun rb_reg_new_str(str : VALUE, options : Int32) : VALUE # re.c:2792
 
   # arrays
   fun rb_ary_new() : VALUE
@@ -34,8 +46,8 @@ lib LibRuby
   fun rb_define_singleton_method(klass : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
 
-lib LibRuby0
-  type METHOD_FUNC = LibRuby::VALUE -> LibRuby::VALUE
+lib LibRuby1
+  type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE # STUB
   fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
   fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
@@ -60,11 +72,66 @@ module RubyImporter
     # String.from_ruby(key)
     "hi".to_ruby
   end
+# end
+
+# class Object
+  def self.from_ruby(obj : LibRuby::VALUE)
+    case rb_class(obj)
+    when "String"
+      String.from_ruby(obj)
+    when "Fixnum", "Bignum", "Integer"
+      puts Int.from_ruby(obj).inspect
+      Int.from_ruby(obj)
+    when "Regexp"
+      Regex.from_ruby(obj)
+    else
+      "sorry :/"
+    end
+  end
+  RB_method_class = LibRuby.rb_intern("class")
+  def self.rb_class(obj : LibRuby::VALUE)
+    rb_klass = LibRuby.rb_funcall(obj, RB_method_class, 0)
+    ptr = LibRuby.rb_class2name(rb_klass)
+    cr_str = String.new(ptr)
+  end
+  RB_method_to_s = LibRuby.rb_intern("to_s")
+  def self.rb_any_to_str(obj)
+    str = LibRuby.rb_funcall(obj, RB_method_to_s, 0)
+    c_str = LibRuby.rb_string_value_cstr(pointerof(str))
+    cr_str = String.new(c_str)
+  end
 end
 
 struct Symbol
   def to_ruby
     LibRuby.rb_id2sym(LibRuby.rb_intern(self.to_s))
+  end
+end
+
+class Regex
+  RB_REGEX_INT = {
+    Regex::Options::IGNORE_CASE  => 1,
+    Regex::Options::MULTILINE    => 2,
+    Regex::Options::EXTENDED     => 4,
+  }
+  def to_ruby
+    code = RB_REGEX_INT.reduce(0){ |code, k, i| self.options.includes?(k) ? code + i : code }
+    LibRuby.rb_reg_new_str(self.source.to_ruby, code)
+  end
+  RB_REGEX_OPTIONS = {
+    'i' => Regex::Options::IGNORE_CASE,
+    'm' => Regex::Options::MULTILINE,
+    'x' => Regex::Options::EXTENDED,
+  }
+  def self.from_ruby(val : LibRuby::VALUE) # needs improvement
+    str = RubyImporter.rb_any_to_str(val)
+    self.from_ruby(str)
+  end
+  def self.from_ruby(str : String)
+    options = str[2..5].split('-').first
+    exp = str[7..-2]
+    options_enum = options.chars.reduce(Regex::Options::None) { |enum_obj, char| enum_obj | RB_REGEX_OPTIONS[char] }
+    new(exp, options_enum)
   end
 end
 

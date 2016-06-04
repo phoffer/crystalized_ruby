@@ -1,4 +1,24 @@
 module Wrapper
+  def self.inspect(obj : LibRuby::VALUE)
+    ptr = LibRuby.rb_class2name(obj)
+    cr_str = String.new(ptr)
+    # puts LibRuby.rb_type(obj)
+    cr_str.to_ruby
+  end
+  def self.rb_boomerang(obj : LibRuby::VALUE)
+    o = RubyImporter.from_ruby(obj)
+    o.to_ruby
+  end
+  def self.rb_class(obj : LibRuby::VALUE)
+    o = RubyImporter.rb_class(obj)
+    o.to_ruby
+  end
+  def self.new_reg(self : LibRuby::VALUE)
+    LibRuby.rb_reg_new_str("world".to_ruby, 0)
+  end
+  def self.to_s(obj : LibRuby::VALUE)
+    RubyImporter.from_ruby(obj).to_ruby
+  end
   def self.rb_str_to_cr_str(str : LibRuby::VALUE)
     puts (rb_str = LibRuby.rb_str_to_str(str)).inspect
     puts pointerof(rb_str).inspect

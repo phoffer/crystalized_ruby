@@ -8,6 +8,37 @@ class String
   end
 end
 
+puts '~~~~~~~~~~ type checking ~~~~~~~~~'
+puts String.cr_inspect
+puts Regexp.cr_inspect
+puts 'inspect_string'.cr_class
+puts 12.cr_class
+puts 12.cr_boomerang
+puts /foo/.cr_class
+
+puts 'regex time'
+re = /fo:o\d+/i
+puts re.to_s
+puts re.options
+puts 'crystal version'
+cr = re.cr_boomerang
+puts cr
+puts cr.options
+puts "equal? #{cr == re}"
+puts "equal? #{/fo:o\d+/i == /fo:o\d+/i}"
+
+puts "regex?\n\n"
+re = /world/
+puts re.cr_boomerang
+puts "Hello World!".gsub(re.cr_regex, 'Paul')
+puts "\n\nregex!!!"
+
+re = /fo:o\d+/i
+puts "ruby: #{re.to_s} crystal: #{re.cr_boomerang}"
+re = "some string"
+puts "ruby: #{re.to_s} crystal: #{re.cr_boomerang}"
+
+puts '^^^^^^^^^^ type checking ^^^^^^^^^'
 
 str_squish = " foo   bar    \n   \t   boo"
 puts str_squish.cr_squish
