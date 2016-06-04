@@ -12,7 +12,7 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 | Symbol      | :x:                | :white_check_mark: |
 | Integer     | :white_check_mark: | :white_check_mark: |
 | Hash        | :x:                | :white_check_mark: |
-| Array       | :x:                | :white_check_mark: |
+| Array       | :white_check_mark: | :white_check_mark: |
 | Regexp      | :white_check_mark: | :white_check_mark: |
 | Nil         | :white_check_mark: | :white_check_mark: |
 | True        | :white_check_mark: | :white_check_mark: |

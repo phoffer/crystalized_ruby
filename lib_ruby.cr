@@ -8,12 +8,13 @@ lib LibRuby
   $rb_cBasicObject : VALUE
 
   # generic
-  # fun rb_type(value : VALUE) : VALUE # can't get this working :/
+  fun rb_type(value : VALUE) : Int32 # can't get this working :/
   fun rb_any_to_s(value : VALUE) : UInt8*
   fun rb_class2name(value : VALUE) : UInt8*
-  fun rb_type(value : VALUE) : UInt8*
+  # fun rb_type(value : VALUE) : UInt8*
   fun rb_funcall(value : VALUE, method : ID, argc : Int32) : VALUE
   # fun rb_nil_p(value : VALUE) : Boolean # not sure how to handle this
+  fun rb_obj_dup(value : VALUE) : VALUE
 
   # integers
   fun rb_num2int(value : VALUE) : Int32
@@ -34,6 +35,8 @@ lib LibRuby
   # arrays
   fun rb_ary_new() : VALUE
   fun rb_ary_push(array : VALUE, value : VALUE)
+  fun rb_ary_length(array : VALUE) : Int32
+  fun rb_ary_shift(array : VALUE) : VALUE
 
   # hashes
   fun rb_hash_new() : VALUE
@@ -76,8 +79,9 @@ module RubyImporter
 # end
 
 # class Object
-  def self.from_ruby(obj : LibRuby::VALUE)
-    case rb_class(obj)
+  def self.scalar_from_ruby(obj : LibRuby::VALUE, klass_name : String = "")
+    klass_name = rb_class(obj) if klass_name == ""
+    case klass_name
     when "NilClass"
       nil
     when "TrueClass"
@@ -86,13 +90,23 @@ module RubyImporter
       false
     when "String"
       String.from_ruby(obj)
-    when "Fixnum", "Bignum", "Integer"
-      puts Int.from_ruby(obj).inspect
+    when "Fixnum"
+      Int32.from_ruby(obj)
+    when "Bignum", "Integer"
+      # puts Int.from_ruby(obj).inspect
       Int.from_ruby(obj)
     when "Regexp"
       Regex.from_ruby(obj)
     else
       "sorry :/"
+    end
+  end
+  def self.from_ruby(obj : LibRuby::VALUE)
+    case (klass_name = rb_class(obj))
+    when "Array"
+      Array.from_ruby(obj)
+    else
+      scalar_from_ruby(obj, klass_name)
     end
   end
   RB_method_class = LibRuby.rb_intern("class")
@@ -146,9 +160,23 @@ class Array
   def to_ruby
     LibRuby.rb_ary_new().tap do |rb_array|
       self.each do |val|
+        val.inspect # stops working without this. no idea why. seriously, comment this line and it fails (at least when spitting out an array that came from ruby)
         LibRuby.rb_ary_push(rb_array, val.to_ruby)
       end
     end
+  end
+  def self.from_ruby(ary) # this is awful
+    rb_ary = LibRuby.rb_obj_dup(ary)
+    element = LibRuby.rb_ary_shift(rb_ary)
+    element = RubyImporter.scalar_from_ruby(element)
+    arr = [element]
+    until element.is_a?(Nil)
+      element = LibRuby.rb_ary_shift(rb_ary)
+      element = RubyImporter.scalar_from_ruby(element)
+      arr << element
+    end
+    arr.pop
+    arr
   end
 end
 
@@ -204,3 +232,13 @@ struct Int
     LibRuby.rb_num2int(int)
   end
 end
+struct Int32
+  def to_ruby
+    LibRuby.rb_int2inum(self)
+  end
+
+  def self.from_ruby(int)
+    LibRuby.rb_num2int(int)
+  end
+end
+

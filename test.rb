@@ -43,6 +43,14 @@ puts '~~~~~~~~~~ true/false/nil ~~~~~~~~~'
 puts nil.cr_boomerang   == nil
 puts true.cr_boomerang  == true
 puts false.cr_boomerang == false
+puts '~~~~~~~~~~ cr_array       ~~~~~~~~~'
+puts 1.cr_boomerang
+arr = [1,2,3,4, "str"]
+puts arr.cr_boomerang.inspect + ' did it work?'
+puts arr.inspect
+arr = []
+puts arr.cr_boomerang.inspect
+puts arr.inspect
 
 puts '^^^^^^^^^^ type checking ^^^^^^^^^'
 
