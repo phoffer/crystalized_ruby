@@ -9,6 +9,7 @@ class String
 end
 
 puts '~~~~~~~~~~ type checking ~~~~~~~~~'
+puts '~~~~~~~~~~ regex ~~~~~~~~~'
 puts String.cr_inspect
 puts Regexp.cr_inspect
 puts 'inspect_string'.cr_class
@@ -37,6 +38,11 @@ re = /fo:o\d+/i
 puts "ruby: #{re.to_s} crystal: #{re.cr_boomerang}"
 re = "some string"
 puts "ruby: #{re.to_s} crystal: #{re.cr_boomerang}"
+puts "\n\n\n"
+puts '~~~~~~~~~~ true/false/nil ~~~~~~~~~'
+puts nil.cr_boomerang   == nil
+puts true.cr_boomerang  == true
+puts false.cr_boomerang == false
 
 puts '^^^^^^^^^^ type checking ^^^^^^^^^'
 

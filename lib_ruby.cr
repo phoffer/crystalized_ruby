@@ -13,6 +13,7 @@ lib LibRuby
   fun rb_class2name(value : VALUE) : UInt8*
   fun rb_type(value : VALUE) : UInt8*
   fun rb_funcall(value : VALUE, method : ID, argc : Int32) : VALUE
+  # fun rb_nil_p(value : VALUE) : Boolean # not sure how to handle this
 
   # integers
   fun rb_num2int(value : VALUE) : Int32
@@ -77,6 +78,12 @@ module RubyImporter
 # class Object
   def self.from_ruby(obj : LibRuby::VALUE)
     case rb_class(obj)
+    when "NilClass"
+      nil
+    when "TrueClass"
+      true
+    when "FalseClass"
+      false
     when "String"
       String.from_ruby(obj)
     when "Fixnum", "Bignum", "Integer"
