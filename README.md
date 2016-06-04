@@ -4,6 +4,20 @@ Proof of concept (and more work coming!) for writing a Ruby extension in Crystal
 
 I'd like to get this to a point that it's incredibly simple and quick to write something and have it functional.
 
+## Class conversion status
+
+| Ruby class  | Ruby => Crystal | Crystal => Ruby |
+| ----------- | :-------------: | :-------------: |
+| String      | :white_check_mark: | :white_check_mark: |
+| Symbol      | :x:                | :white_check_mark: |
+| Integer     | :white_check_mark: | :white_check_mark: |
+| Hash        | :x:                | :white_check_mark: |
+| Array       | :x:                | :white_check_mark: |
+| Regexp      | :white_check_mark: | :white_check_mark: |
+| Nil         | :x:                | :white_check_mark: |
+| True        | :x:                | :white_check_mark: |
+| False       | :x:                | :white_check_mark: |
+
 ## Updates
 
 #### 6/3 @ 5937f4b
