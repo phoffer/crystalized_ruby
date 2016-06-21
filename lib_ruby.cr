@@ -136,7 +136,7 @@ class Regex
     Regex::Options::EXTENDED     => 4,
   }
   def to_ruby
-    code = RB_REGEX_INT.reduce(0){ |code, k, i| self.options.includes?(k) ? code + i : code }
+    code = RB_REGEX_INT.reduce(0){ |code, ( k, i )| self.options.includes?(k) ? code + i : code }
     LibRuby.rb_reg_new_str(self.source.to_ruby, code)
   end
   RB_REGEX_OPTIONS = {
