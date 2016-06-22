@@ -20,6 +20,10 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 
 ## Updates
 
+#### 6/22
+
+Major refactoring just to better organize the code in better directories. Putting executables in the 'bin' folder. Moving the native extensions in the proper 'ext' folder with 'extconf.rb' and configure the project as a gem.
+
 #### 6/3 @ 5937f4b
 
 1. Inflectors are completely working
@@ -39,11 +43,9 @@ This is now using an external shard for inflectors ([github/phoffer/inflector.cr
 I've ported over all the relevant parts of ActiveSupport::Inflector. Basically everything except the two methods for constantizing and also the i18n stuff. To run:
 
 ```
-cd active_support
-crystal check_string.cr
-crystal check_inflector.cr
-make
-ruby benchmark.rb
+rake clean
+rake compile
+bin/benchmark_inflector
 ```
 
 The only thing that's BROKEN is pluralize. It works except for words that are already plural, ending in 's', like "posts"/"words"
@@ -59,9 +61,11 @@ Make sure Crystal is installed (Homebrew on OSX is fine)
 Test and benchmark scripts both require [fast_blank](https://github.com/SamSaffron/fast_blank) and [active_support](https://github.com/rails/rails/tree/master/activesupport), mainly for comparison. Test script also uses [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics), and the benchmark script uses [benchmark-ips](https://github.com/evanphx/benchmark-ips). None of these are required, except to run those two Ruby scripts. There's a Gemfile to install them if desired.
 
 ```
-make
-ruby test.rb
-ruby benchmark.rb
+rake clean
+rake compile
+rake test
+bin/test
+bin/benchmark
 ```
 
 # Problems
@@ -119,3 +123,12 @@ These have all been incredibly helpful, and this is very closely modeled after t
 I'd like to get this more fully fleshed out, more functional, and get it usable. There is some question as to whether or not writing a native Ruby extension in Crystal is a useful idea, and I'd love to learn more about both why it _would_ and would _not_ be worthwhile, from people out there who are far more knowledgeable than I am.
 
 If anyone is interested in this concept, please reach out to me either on this repo or on Twitter (@phoffer8). I'd love to collaborate with anyone interested, and just learn more in general.
+
+# Wish List
+
+* Complete the LibRuby wrapper for ruby.h and possibly a way to automate extracting the signatures from ruby.h into Crystal
+* Create a series of macros to create the wrappers of the Crystal methods (to convert input and output type between Crystal and CRuby)
+* Separate the LibRuby part into a separate gem/shard to make it reusable
+* If it was possible to create the aforementioned macros, then it would be great to create a generator to create the template of a Ruby gem with the native extension bits (libruby, extconf, makefile, etc)
+
+Goal: to make it as easy as possible to create Ruby gems with Crystal-based native extensions where we could start with a "slow" Ruby source, tweak it quickly into a Crystal source file, wrap it up with LibRuby and compile it back as a native extension. No having to resort to C, Rust or other low level - and ugly - options.

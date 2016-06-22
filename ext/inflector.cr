@@ -1,5 +1,5 @@
-require "../lib_ruby"
-require "./wrapper"
+require "./src/lib_ruby/lib_ruby"
+require "./src/inflector/wrapper"
 
 fun init = Init_inflector
   GC.init

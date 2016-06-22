@@ -1,5 +1,8 @@
-require './rb_math'
-require './crystal_ext'
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require_relative './../lib/crystalized_ruby/rb_math'
+require_relative './../ext/crystalized_ruby'
 require 'benchmark/ips'
 require 'active_support/all'
 

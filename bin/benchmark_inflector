@@ -1,9 +1,10 @@
-require "./inflector"
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require_relative "./../ext/inflector"
 
 require 'benchmark/ips'
 require 'active_support/all'
-
-
 
 Benchmark.ips do |x|
   x.report('cr ordinal') do
