@@ -10,7 +10,7 @@ Functional code for native extensions, without using FFI. This can utilize any C
 | ----------- | :-------------: | :-------------: |
 | String      | :white_check_mark: | :white_check_mark: |
 | Symbol      | :x:                | :white_check_mark: |
-| Integer     | :white_check_mark: | :white_check_mark: |
+| Integer     | :white_check_mark:* | :white_check_mark: |
 | Float       | :x:                | :x:                |
 | Hash        | :x:                | :white_check_mark: |
 | Array       | :white_check_mark: | :white_check_mark: |
@@ -18,6 +18,16 @@ Functional code for native extensions, without using FFI. This can utilize any C
 | Nil         | :white_check_mark: | :white_check_mark: |
 | True        | :white_check_mark: | :white_check_mark: |
 | False       | :white_check_mark: | :white_check_mark: |
+
+# TODO
+
+- [ ] get all types working
+  + [ ] float rb <=> cr
+  + [ ] negative integers rb => cr
+  + [ ] hash rb => cr
+  + [ ] something for symbol rb => cr
+- [ ] be able to build gem and use (even just for checking type conversions)
+- [ ] separate repo into crystal shard for lib_ruby related, generator gem, and fast_inflector gem
 
 ## Updates
 
