@@ -20,6 +20,13 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 
 ## Updates
 
+#### 6/21 @038cca8
+
+* Makefile compiles on Ubuntu ([@akitaonrails](https://github.com/akitaonrails))
+* String#blank? even faster now ([@kostya](https://github.com/kostya))
+* Updated test inflector benchmarking
+* Since this project has gotten a little bit of attention, I'll be adding some docs about contributing/developing/etc. 
+
 #### 6/3 @ 5937f4b
 
 1. Inflectors are completely working
