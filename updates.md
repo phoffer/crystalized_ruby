@@ -1,3 +1,7 @@
+#### 6/22
+
+Major refactoring just to better organize the code in better directories. Putting executables in the 'bin' folder. Moving the native extensions in the proper 'ext' folder with 'extconf.rb' and configure the project as a gem.
+
 #### 6/21 @038cca8
 
 * Makefile compiles on Ubuntu ([@akitaonrails](https://github.com/akitaonrails))

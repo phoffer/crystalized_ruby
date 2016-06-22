@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "crystalized_ruby"
   spec.version       = CrystalizedRuby::VERSION
   spec.authors       = ["Paul Hoffer", "Fabio Akita"]
-  spec.email         = ["fabioakita@gmail.com"]
+  spec.email         = ["paulrhoffer@gmail.com"]
 
   spec.summary       = %q{Creating bindings and wrappers to create native extensions for Ruby in Crystal}
   spec.description   = %q{Series of wrappers and experiments to show how to implement native extensions for MRI Ruby in Crystal}
