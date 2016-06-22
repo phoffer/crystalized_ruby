@@ -11,6 +11,7 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 | String      | :white_check_mark: | :white_check_mark: |
 | Symbol      | :x:                | :white_check_mark: |
 | Integer     | :white_check_mark: | :white_check_mark: |
+| Float       | :x:                | :x:                |
 | Hash        | :x:                | :white_check_mark: |
 | Array       | :white_check_mark: | :white_check_mark: |
 | Regexp      | :white_check_mark: | :white_check_mark: |
@@ -20,6 +21,9 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 
 ## Updates
 
+See [updates.md](updates.md)
+
+# Problems
 #### 6/22
 
 Major refactoring just to better organize the code in better directories. Putting executables in the 'bin' folder. Moving the native extensions in the proper 'ext' folder with 'extconf.rb' and configure the project as a gem.
@@ -49,8 +53,12 @@ bin/benchmark_inflector
 ```
 
 The only thing that's BROKEN is pluralize. It works except for words that are already plural, ending in 's', like "posts"/"words"
+>>>>>>> reorganizing this project into a proper ruby project with native extension support to compile the crystal bits and also proper places to add benchmark and tests
 
-There's a benchmarking script for all this, and the results are pretty good. See `active_support/results.txt`
+* Negative integers don't convert correctly
+* Floats aren't working
+* I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
+* I can't get a proc as a C callback working. There's some broken code commented out. Would love assistance from someone more knowledgeable. Right now this is for converting a Ruby hash to a Crystal hash. 
 
 # How to get this working
 
@@ -67,13 +75,6 @@ rake test
 bin/test
 bin/benchmark
 ```
-
-# Problems
-
-* I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
-* Also, it's just pretty rough. I want to clean it up, add some helpers for defining methods in a simpler manner, etc.
-* I can't get a proc as a C callback working. There's some broken code commented out. Would love assistance from someone more knowledgeable. Right now this is for converting a Ruby hash to a Crystal hash. 
-* Once it can read Ruby hashes/arrays, it will need to be able to check the ruby type for conversion to Crystal. There are some C APIs for this, just gotta figure them out.
 
 # Benchmarking
 
