@@ -24,11 +24,11 @@ This is now using an external shard for inflectors ([github/phoffer/inflector.cr
 I've ported over all the relevant parts of ActiveSupport::Inflector. Basically everything except the two methods for constantizing and also the i18n stuff. To run:
 
 ```
-cd active_support
-crystal check_string.cr
-crystal check_inflector.cr
-make
-ruby benchmark.rb
+rake clean
+rake compile
+rake test
+bin/benchmark
+bin/benchmark_inflector
 ```
 
 The only thing that's BROKEN is pluralize. It works except for words that are already plural, ending in 's', like "posts"/"words"
