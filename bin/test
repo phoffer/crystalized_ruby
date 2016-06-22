@@ -1,7 +1,10 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
 # First, build the extension by running `make`
 # this is a big mess, just a bunch of random stuff to test out. 
 
-require './crystal_ext'
+require_relative './../ext/crystalized_ruby'
 class String
   def cr_blank?
     empty? || cr_blank

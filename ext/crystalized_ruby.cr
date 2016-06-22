@@ -1,10 +1,10 @@
-require "./lib_ruby"
-require "./integer_stuff"
-require "./wrapper"
-require "./geode"
-require "./string_extensions"
+require "./src/lib_ruby/lib_ruby"
+require "./src/crystalized_ruby/integer_stuff"
+require "./src/crystalized_ruby/wrapper"
+require "./src/crystalized_ruby/geode"
+require "./src/crystalized_ruby/string_extensions"
 
-fun init = Init_crystal_ext
+fun init = Init_crystalized_ruby
   GC.init
   LibCrystalMain.__crystal_main(0, Pointer(Pointer(UInt8)).null)
 
