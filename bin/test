@@ -15,6 +15,8 @@ end
 
 
 puts '~~~~~~~~~~ type checking ~~~~~~~~~'
+
+puts :symbol.cr_boomerang
 puts '~~~~~~~~~~ numbers ~~~~~~~~~'
 puts 1.cr_boomerang
 puts 1.23.class.to_s
