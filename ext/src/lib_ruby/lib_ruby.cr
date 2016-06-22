@@ -90,6 +90,8 @@ module RubyImporter
       false
     when "String"
       String.from_ruby(obj)
+    when "Symbol"
+      RubySymbol.from_ruby(obj)
     when "Fixnum"
       Int32.from_ruby(obj)
     when "Bignum", "Integer"
@@ -194,7 +196,7 @@ class Hash
     # RubyImporter.import_hash_key do |tick|
     #   puts tick
     # end
-    "hi"
+    {cant: "import ruby hashes"}
   end
 end
 
@@ -221,10 +223,22 @@ class String
   def self.from_ruby(str : LibRuby::VALUE)
     rb_str = LibRuby.rb_str_to_str(str)
     c_str = LibRuby.rb_string_value_cstr(pointerof(rb_str))
-    cr_str = String.new(c_str)
+    cr_str = new(c_str)
   end
 end
 
+# not working as intended
+class RubySymbol < String
+  def to_ruby
+    LibRuby.rb_id2sym(LibRuby.rb_intern(self))
+  end
+  def self.from_ruby(sym : LibRuby::VALUE)
+    str = LibRuby.rb_funcall(sym, RubyImporter::RB_method_to_s, 0)
+    rb_str = LibRuby.rb_str_to_str(str)
+    c_str = LibRuby.rb_string_value_cstr(pointerof(rb_str))
+    cr_str = new(c_str)
+  end
+end
 struct Int
   def to_ruby
     LibRuby.rb_int2inum(self)
