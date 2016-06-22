@@ -97,6 +97,8 @@ module RubyImporter
       Int.from_ruby(obj)
     when "Regexp"
       Regex.from_ruby(obj)
+    when "Float"
+      Float.from_ruby(obj)
     else
       "sorry :/"
     end
@@ -241,4 +243,11 @@ struct Int32
     LibRuby.rb_num2int(int)
   end
 end
-
+struct Float
+  def self.from_ruby(float)
+    LibRuby.rb_num2dbl(float)
+  end
+  def to_ruby
+    to_i.to_ruby
+  end
+end

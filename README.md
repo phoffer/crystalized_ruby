@@ -11,6 +11,7 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 | String      | :white_check_mark: | :white_check_mark: |
 | Symbol      | :x:                | :white_check_mark: |
 | Integer     | :white_check_mark: | :white_check_mark: |
+| Float       | :x:                | :x:                |
 | Hash        | :x:                | :white_check_mark: |
 | Array       | :white_check_mark: | :white_check_mark: |
 | Regexp      | :white_check_mark: | :white_check_mark: |
@@ -20,42 +21,14 @@ I'd like to get this to a point that it's incredibly simple and quick to write s
 
 ## Updates
 
-#### 6/21 @038cca8
+See [updates.md](updates.md)
 
-* Makefile compiles on Ubuntu ([@akitaonrails](https://github.com/akitaonrails))
-* String#blank? even faster now ([@kostya](https://github.com/kostya))
-* Updated test inflector benchmarking
-* Since this project has gotten a little bit of attention, I'll be adding some docs about contributing/developing/etc. 
+# Problems
 
-#### 6/3 @ 5937f4b
-
-1. Inflectors are completely working
-2. Regular expressions work, converting both directions (ruby -> crystal and vice versa)
-
-#### 5/30 @ 182f5fb
-
-This is now using an external shard for inflectors ([github/phoffer/inflector.cr](https://github.com/phoffer/inflector.cr)). It is not quite perfect but it's mostly working, please see that repo for more info. 
-
-#### 5/27 @ 5790cbe
-
-* Set up benchmarking to compare the Ruby-ActiveSupport with the Crystal implementation. Results are very strong for Crystal.
-* Realized I forgot to add a bunch of files to the repo. Those are all added and the instructions below should work now.
-
-#### 5/26 @ 65e1d26
-
-I've ported over all the relevant parts of ActiveSupport::Inflector. Basically everything except the two methods for constantizing and also the i18n stuff. To run:
-
-```
-cd active_support
-crystal check_string.cr
-crystal check_inflector.cr
-make
-ruby benchmark.rb
-```
-
-The only thing that's BROKEN is pluralize. It works except for words that are already plural, ending in 's', like "posts"/"words"
-
-There's a benchmarking script for all this, and the results are pretty good. See `active_support/results.txt`
+* Negative integers don't convert correctly
+* Floats aren't working
+* I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
+* I can't get a proc as a C callback working. There's some broken code commented out. Would love assistance from someone more knowledgeable. Right now this is for converting a Ruby hash to a Crystal hash. 
 
 # How to get this working
 
@@ -70,13 +43,6 @@ make
 ruby test.rb
 ruby benchmark.rb
 ```
-
-# Problems
-
-* I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
-* Also, it's just pretty rough. I want to clean it up, add some helpers for defining methods in a simpler manner, etc.
-* I can't get a proc as a C callback working. There's some broken code commented out. Would love assistance from someone more knowledgeable. Right now this is for converting a Ruby hash to a Crystal hash. 
-* Once it can read Ruby hashes/arrays, it will need to be able to check the ruby type for conversion to Crystal. There are some C APIs for this, just gotta figure them out.
 
 # Benchmarking
 

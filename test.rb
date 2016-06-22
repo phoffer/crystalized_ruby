@@ -8,7 +8,19 @@ class String
   end
 end
 
+
+
+
 puts '~~~~~~~~~~ type checking ~~~~~~~~~'
+puts '~~~~~~~~~~ numbers ~~~~~~~~~'
+puts 1.cr_boomerang
+puts 1.23.class.to_s
+puts 1.23.cr_boomerang
+puts -1.cr_boomerang
+puts 4321.cr_boomerang
+puts 0.cr_boomerang
+
+
 puts '~~~~~~~~~~ regex ~~~~~~~~~'
 puts String.cr_inspect
 puts Regexp.cr_inspect
