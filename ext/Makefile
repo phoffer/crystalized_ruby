@@ -11,7 +11,12 @@ LIBRUBY = $(shell ruby -e "puts RbConfig::CONFIG['libdir']")
 LIBS = -levent -lpcre -lgc -lpthread -lruby -ldl -lm -lc
 LDFLAGS = -L. -fstack-protector -rdynamic -Wl,-export-dynamic,-undefined,dynamic_lookup
 
-all: crystalized_ruby.so inflector.so
+install: all
+
+all: shards crystalized_ruby.so inflector.so
+
+shards:
+	crystal deps
 
 crystalized_ruby.so: crystalized_ruby.o
 	$(CC) -shared $^ -o $@ $(LIBCRYSTAL) -L$(LIBRARY_PATH) -L$(LIBRUBY) $(LIBS) $(LDFLAGS)
