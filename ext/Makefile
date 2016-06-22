@@ -40,7 +40,10 @@ endif
 ifeq "$(PLATFORM)" "Darwin"
 CRYSTAL_FLAGS = -dynamic -bundle -Wl,-undefined,dynamic_lookup
 
-all: crystalized_ruby.bundle inflector.bundle
+all: shards crystalized_ruby.bundle inflector.bundle
+
+shards:
+	crystal deps
 
 crystalized_ruby.bundle: crystalized_ruby.cr
 	crystal $^ --release --link-flags "$(CRYSTAL_FLAGS)" -o $@
