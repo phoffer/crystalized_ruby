@@ -279,3 +279,21 @@ Benchmark.ips do |x|
   x.compare!
 end
 
+require 'fast_blank'
+Benchmark.ips do |x|
+  x.report('cr blank?') do
+    ''.cr_blank?                                                      # => true
+    '   '.cr_blank?                                                   # => true
+    "\t\n\r".cr_blank?                                                # => true
+    ' blah '.cr_blank?                                                # => false
+    "\u00a0".cr_blank?                                                # => true
+  end
+  x.report('fast blank?') do
+    ''.blank?                                                      # => true
+    '   '.blank?                                                   # => true
+    "\t\n\r".blank?                                                # => true
+    ' blah '.blank?                                                # => false
+    "\u00a0".blank?                                                # => true
+  end
+  x.compare!
+end
