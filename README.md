@@ -112,4 +112,4 @@ If anyone is interested in this concept, please reach out to me either on this r
 * Separate the LibRuby part into a separate gem/shard to make it reusable
 * If it was possible to create the aforementioned macros, then it would be great to create a generator to create the template of a Ruby gem with the native extension bits (libruby, extconf, makefile, etc)
 
-Goal: to make it as easy as possible to create Ruby gems with Crystal-based native extensions where we could start with a "slow" Ruby source, tweak it quickly into a Crystal source file, wrap it up with LibRuby and compile it back as a native extension. No having to resort to C, Rust or other low level - and ugly - options.
+Goal: to make it as easy as possible to create Ruby gems with Crystal-based native extensions where we could start with a "slow" Ruby source, tweak it quickly into a Crystal source file, wrap it up with LibRuby and compile it back as a native extension. No having to resort to C, Rust or other low level options.
