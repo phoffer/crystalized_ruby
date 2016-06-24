@@ -1,5 +1,7 @@
 # Native Ruby extensions written in Crystal
 
+[![Join the chat at https://gitter.im/phoffer/crystalized_ruby](https://badges.gitter.im/phoffer/crystalized_ruby.svg)](https://gitter.im/phoffer/crystalized_ruby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Functional code for native extensions, without using FFI. This can utilize any Crystal code, i.e. existing shards.
 
 **This is still in heavy development and not ready for use.** If you are interested in creating a proof of concept, I'm happy to assist. But otherwise, this isn't ready for real use.
