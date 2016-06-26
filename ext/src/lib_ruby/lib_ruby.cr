@@ -44,10 +44,14 @@ lib LibRuby
   fun rb_hash_foreach(hash : VALUE, callback : (Int32, Void* ->), data : Void*)
   fun rb_hash_keys(hash : VALUE)
 
+  # classes & modules
   fun rb_define_class(name : UInt8*, super : VALUE) : VALUE
+  fun rb_define_class_under(parent : VALUE, name : UInt8*, super : VALUE) : VALUE
   fun rb_define_module(name : UInt8*, super : VALUE) : VALUE
+  fun rb_define_module_under(parent : VALUE, name : UInt8*, super : VALUE) : VALUE
   fun rb_define_method(klass : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
   fun rb_define_singleton_method(klass : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  fun rb_define_module_function(module : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
 
 lib LibRuby1
@@ -58,6 +62,12 @@ end
 
 lib LibRuby2
   type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE
+  fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+end
+
+lib LibRuby3
+  type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE
   fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
   fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
