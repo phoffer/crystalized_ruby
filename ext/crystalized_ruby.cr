@@ -9,10 +9,11 @@ fun init = Init_crystalized_ruby
   LibCrystalMain.__crystal_main(0, Pointer(Pointer(UInt8)).null)
 
   # miscellaneous stuff - "Geode"
-  geode = LibRuby.rb_define_class("Geode", LibRuby.rb_cObject)
-  LibRuby1.rb_define_method(geode, "salute", ->Wrapper.salute_wrapper, 1)
-  LibRuby.rb_define_method(geode, "cr_array", ->Wrapper.array_to_ruby, 0)
-  LibRuby.rb_define_method(geode, "cr_hash", ->Wrapper.hash_to_ruby, 0)
+  geode = LibRuby.rb_define_module("Geode", LibRuby.rb_cObject)
+  stuff = LibRuby.rb_define_class_under(geode, "Stuff", LibRuby.rb_cObject)
+  LibRuby1.rb_define_method(stuff, "salute", ->Wrapper.salute_wrapper, 1)
+  LibRuby.rb_define_method(stuff, "cr_array", ->Wrapper.array_to_ruby, 0)
+  LibRuby.rb_define_method(stuff, "cr_hash", ->Wrapper.hash_to_ruby, 0)
   # LibRuby.rb_define_method(integer, "cr_hash", ->Wrapper.hash_crystalize, 0)
 
   # Integer
