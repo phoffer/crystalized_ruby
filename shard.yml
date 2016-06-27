@@ -1,0 +1,10 @@
+name: crystalized_ruby
+version: 0.1.0
+
+authors:
+  - Paul Hoffer <paulrhoffer@gmail.com>
+
+description: |
+  Write native Ruby extensions in Crystal. Do not use this in a Crystal project.
+
+# license: MIT
