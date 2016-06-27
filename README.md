@@ -6,6 +6,14 @@ Functional code for native extensions, without using FFI. This can utilize any C
 
 **This is still in heavy development and not ready for use.** If you are interested in creating a proof of concept, I'm happy to assist. But otherwise, this isn't ready for real use.
 
+Current work is splitting this repo into multiple repos:
+
+1. A Crystal shard that contains the Ruby bindings (will be this repo)
+2. [A faster version of ActiveSupport::Inflector](https://github.com/phoffer/fast_inflector) that utilizes [inflector.cr](https://github.com/phoffer/inflector.cr) as a native extension
+3. A Ruby gem that assists with generating a gem that uses Crystal for a native extension
+
+This work is being done on the `repo-split` branch.
+
 ## Class conversion status
 
 | Ruby class  | Ruby => Crystal | Crystal => Ruby |
