@@ -91,9 +91,15 @@ module RubyImporter
     # String.from_ruby(key)
     "hi".to_ruby
   end
-# end
-
-# class Object
+  def self.string_symbol_from_ruby(obj : LibRuby::VALUE)
+    klass_name = rb_class(obj) if klass_name == ""
+    case klass_name
+    when "String"
+      String.from_ruby(obj)
+    when "Symbol"
+      RubySymbol.from_ruby(obj)
+    end
+  end
   def self.scalar_from_ruby(obj : LibRuby::VALUE, klass_name : String = "")
     klass_name = rb_class(obj) if klass_name == ""
     case klass_name
@@ -248,9 +254,9 @@ class RubySymbol < String
     LibRuby.rb_id2sym(LibRuby.rb_intern(self))
   end
   def self.from_ruby(sym : LibRuby::VALUE)
-    str = LibRuby.rb_funcall(sym, RubyImporter::RB_method_to_s, 0)
+    str    = LibRuby.rb_funcall(sym, RubyImporter::RB_method_to_s, 0)
     rb_str = LibRuby.rb_str_to_str(str)
-    c_str = LibRuby.rb_string_value_cstr(pointerof(rb_str))
+    c_str  = LibRuby.rb_string_value_cstr(pointerof(rb_str))
     cr_str = new(c_str)
   end
 end
