@@ -16,7 +16,7 @@ end
 
 puts '~~~~~~~~~~ type checking ~~~~~~~~~'
 
-puts :symbol.cr_boomerang
+puts :symbol.cr_boomerang.inspect
 puts '~~~~~~~~~~ numbers ~~~~~~~~~'
 puts 1.cr_boomerang
 puts 1.23.class.to_s
@@ -25,6 +25,11 @@ puts -1.cr_boomerang
 puts 4321.cr_boomerang
 puts 0.cr_boomerang
 
+
+puts '~~~~~~~~~~ non-ascii ~~~~~~~~~'
+puts "¿por qué?".cr_boomerang
+puts "Fred’s".cr_boomerang
+puts "Fred`s".cr_boomerang
 
 puts '~~~~~~~~~~ regex ~~~~~~~~~'
 puts String.cr_inspect
