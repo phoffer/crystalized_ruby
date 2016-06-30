@@ -231,8 +231,14 @@ struct Bool
   def to_ruby
     Pointer(Void).new(self ? 20_u64 : 0_u64).as(LibRuby::VALUE)
   end
-  def self.from_ruby
-    #
+  def self.from_ruby(obj : LibRuby::VALUE)
+    klass_name = RubyImporter.rb_class(obj)
+    case klass_name
+    when "TrueClass"
+      true
+    when "FalseClass"
+      false
+    end
   end
 end
 
