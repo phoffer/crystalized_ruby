@@ -30,6 +30,7 @@ puts '~~~~~~~~~~ non-ascii ~~~~~~~~~'
 puts "¿por qué?".cr_boomerang
 puts "Fred’s".cr_boomerang
 puts "Fred`s".cr_boomerang
+puts "Fred`s".encoding
 
 puts '~~~~~~~~~~ regex ~~~~~~~~~'
 puts String.cr_inspect

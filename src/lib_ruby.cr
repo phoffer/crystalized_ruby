@@ -25,6 +25,8 @@ lib LibRuby
   fun rb_str_to_str(value : VALUE) : VALUE
   fun rb_string_value_cstr(value_ptr : VALUE*) : UInt8*
   fun rb_str_new_cstr(str : UInt8*) : VALUE
+  fun rb_utf8_encoding() : VALUE
+  fun rb_enc_str_new_cstr(str : UInt8*, enc : VALUE) : VALUE
 
   fun rb_id2sym(value : ID) : VALUE
   fun rb_intern(name : UInt8*) : ID
@@ -243,8 +245,9 @@ struct Bool
 end
 
 class String
+  RUBY_UTF = LibRuby.rb_utf8_encoding
   def to_ruby
-    LibRuby.rb_str_new_cstr(self)
+    LibRuby.rb_enc_str_new_cstr(self, RUBY_UTF)
   end
 
   def self.from_ruby(str : LibRuby::VALUE)
