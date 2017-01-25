@@ -106,6 +106,7 @@ There's three main projects that I've gained knowledge from to get this fully wo
 - [manastech/crystal_ruby](https://github.com/manastech/crystal_ruby)
 - [notozeki/crystal_example_ext](https://gist.github.com/notozeki/7159a9d9ab9707a22129)
 - [gaar4ica/ruby_ext_in_crystal_math](https://github.com/gaar4ica/ruby_ext_in_crystal_math)
+- [Jason Carter, my very best friend](https://github.com/jasonwc)
 
 These have all been incredibly helpful, and this is very closely modeled after the last two sources. @gaar4ica's also includes a PDF from a talk she gave at Fosdem, which was highly informative.
 
