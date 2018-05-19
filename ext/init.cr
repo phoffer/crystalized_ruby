@@ -10,8 +10,8 @@ fun init = Init_crystalized_ruby
 
   # miscellaneous stuff - "Geode"
   geode = LibRuby.rb_define_module("Geode", LibRuby.rb_cObject)
-  stuff = LibRuby.rb_define_class_under(geode, "Stuff", LibRuby.rb_cObject)
-  # LibRuby1.rb_define_method(stuff, "salute", ->Wrapper.salute_wrapper, 1)
+  stuff = LibRuby.rb_define_class("Stuff", geode)
+  LibRuby1.rb_define_method(stuff, "salute", ->Wrapper.salute_wrapper, 1)
   LibRuby.rb_define_method(stuff, "cr_array", ->Wrapper.array_to_ruby, 0)
   LibRuby.rb_define_method(stuff, "cr_hash", ->Wrapper.hash_to_ruby, 0)
   # LibRuby.rb_define_method(integer, "cr_hash", ->Wrapper.hash_crystalize, 0)
@@ -32,8 +32,8 @@ fun init = Init_crystalized_ruby
   
   # CrMath
   cr_math = LibRuby.rb_define_class("CrMath", LibRuby.rb_cObject)
-  # LibRuby1.rb_define_method(cr_math, "fibonacci", ->Wrapper.fibonacci_cr_wrapper, 1)
-  # LibRuby2.rb_define_method(cr_math, "add", ->Wrapper.add, 2)
+  LibRuby1.rb_define_method(cr_math, "fibonacci", ->Wrapper.fibonacci_cr_wrapper, 1)
+  LibRuby2.rb_define_method(cr_math, "add", ->Wrapper.add, 2)
 
   # poking around
   obj = LibRuby.rb_define_class("Object", LibRuby.rb_cBasicObject)

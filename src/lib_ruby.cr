@@ -60,23 +60,23 @@ end
 
 lib LibRuby1
   type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE # STUB
-  fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
 
 lib LibRuby2
   type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE
-  fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
 
 lib LibRuby3
   type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE
-  fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
+  # fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
 
 module RubyImporter
@@ -99,7 +99,7 @@ module RubyImporter
     when "String"
       String.from_ruby(obj)
     when "Symbol"
-      RubySymbol.from_ruby(obj)
+      String.from_ruby(obj) # can't inherit from string now
     end
   end
   def self.scalar_from_ruby(obj : LibRuby::VALUE, klass_name : String = "")
@@ -114,7 +114,7 @@ module RubyImporter
     when "String"
       String.from_ruby(obj)
     when "Symbol"
-      RubySymbol.from_ruby(obj)
+      String.from_ruby(obj) # can't inherit from string now
     when "Fixnum"
       Int32.from_ruby(obj)
     when "Bignum", "Integer"
@@ -245,6 +245,7 @@ struct Bool
 end
 
 class String
+  # https://www.ruby-forum.com/topic/163338
   RUBY_UTF = LibRuby.rb_utf8_encoding
   def to_ruby
     LibRuby.rb_enc_str_new_cstr(self, RUBY_UTF)
@@ -258,17 +259,17 @@ class String
 end
 
 # not working as intended
-class RubySymbol < String
-  def to_ruby
-    LibRuby.rb_id2sym(LibRuby.rb_intern(self))
-  end
-  def self.from_ruby(sym : LibRuby::VALUE)
-    str    = LibRuby.rb_funcall(sym, RubyImporter::RB_method_to_s, 0)
-    rb_str = LibRuby.rb_str_to_str(str)
-    c_str  = LibRuby.rb_string_value_cstr(pointerof(rb_str))
-    cr_str = new(c_str)
-  end
-end
+# class RubySymbol < String
+#   def to_ruby
+#     LibRuby.rb_id2sym(LibRuby.rb_intern(self))
+#   end
+#   def self.from_ruby(sym : LibRuby::VALUE)
+#     str    = LibRuby.rb_funcall(sym, RubyImporter::RB_method_to_s, 0)
+#     rb_str = LibRuby.rb_str_to_str(str)
+#     c_str  = LibRuby.rb_string_value_cstr(pointerof(rb_str))
+#     cr_str = new(c_str)
+#   end
+# end
 struct Int
   def to_ruby
     LibRuby.rb_int2inum(self)
